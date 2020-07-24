@@ -27,7 +27,8 @@ public class GameClient extends JComponent {
         frame.setTitle("Udemy的坦克大战");
         frame.setIconImage(new ImageIcon("assets/images/icon.png").getImage());
         frame.setLocation(300, 40);
-        frame.add(new GameClient());
+        final GameClient client = new GameClient();
+        frame.add(client);
         frame.pack();
         frame.setDefaultCloseOperation(3);
         frame.setVisible(true);
@@ -36,10 +37,19 @@ public class GameClient extends JComponent {
             public void keyPressed(KeyEvent e) {
                 switch (e.getKeyCode()) {
                     case KeyEvent.VK_UP:
+                        client.playerTank.setY(client.playerTank.getY() - 5);
+                        break;
                     case KeyEvent.VK_DOWN:
+                        client.playerTank.setY(client.playerTank.getY() + 5);
+                        break;
                     case KeyEvent.VK_LEFT:
+                        client.playerTank.setX(client.playerTank.getX() - 5);
+                        break;
                     case KeyEvent.VK_RIGHT:
+                        client.playerTank.setX(client.playerTank.getX() + 5);
+                        break;
                 }
+                client.repaint();
             }
 
             @Override

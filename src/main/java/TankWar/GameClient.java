@@ -32,22 +32,23 @@ public class GameClient extends JComponent {
         frame.pack();
         frame.setDefaultCloseOperation(3);
         frame.setVisible(true);
+        //在窗口增加键盘监听，用KeyAdapter匿名内部类
         frame.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
-                client.playerTank.keyPressed(e);
+                client.playerTank.keyPressed(e); //调用坦克类的keyPressed方法
             }
 
             @Override
             public void keyReleased(KeyEvent e) {
-                client.playerTank.keyReleased(e);
+                client.playerTank.keyReleased(e); //调用坦克类的keyreleased方法
             }
         });
 
         while(true){
-            client.repaint();
+            client.repaint(); //重画paintComponent方法
             try {
-                Thread.sleep(50);
+                Thread.sleep(50); //间隔50毫秒重画一次
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

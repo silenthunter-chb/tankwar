@@ -5,16 +5,16 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 
 public class Tank {
-    private int x, y;
-    private Direction direction;
+    private int x, y; //坦克坐标
+    private Direction direction; //枚举类对象
 
-    public Tank(int x, int y, Direction direction) {
+    public Tank(int x, int y, Direction direction) { //实例化坦克类时，创建坦克坐标和枚举对象
         this.x = x;
         this.y = y;
         this.direction = direction;
     }
 
-    void move() {
+    void move() { //根据枚举值控制坦克坐标
         switch (direction) {
             case UP: //上
                 y -= 5;
@@ -29,25 +29,25 @@ public class Tank {
                 x += 5;
                 break;
             case UPLEFT: //上左
-                x-=5;
-                y-=5;
+                x -= 5;
+                y -= 5;
                 break;
             case UPRIGHT://上右
-                x+=5;
-                y-=5;
+                x += 5;
+                y -= 5;
                 break;
             case DOWNLEFT://下左
-                x-=5;
-                y+=5;
+                x -= 5;
+                y += 5;
                 break;
             case DOWNRIGHT://下右
-                x+=5;
-                y+=5;
+                x += 5;
+                y += 5;
                 break;
         }
     }
 
- public void setX(int x) {
+    public void setX(int x) {
         this.x = x;
     }
 
@@ -63,6 +63,8 @@ public class Tank {
         return y;
     }
 
+    //根据枚举值，判断显示哪一个方向的坦克图片。
+    //这个方法由显示函数调用。
     Image getImage() {
         switch (direction) {
             case UP: //上
@@ -85,14 +87,18 @@ public class Tank {
         return null;
     }
 
+    //负责将坦克显示到窗口。
+    //先调用确定方向枚举对象的方法，再调用改变坦克坐标的方法
     void draw(Graphics g) {
         this.determineDirection();
         this.move();
         g.drawImage(this.getImage(), this.x, this.y, null);
     }
 
-    private boolean up, down, left, right;
+    private boolean up, down, left, right; //布尔值储存坦克上下左右方向
 
+    //根据用戶按下的方向键，设定方向布尔值。
+    //同时按下两个键，可以改变两个方向布尔值。
     public void keyPressed(KeyEvent e) {
         switch (e.getKeyCode()) {
             case KeyEvent.VK_UP:
@@ -110,6 +116,7 @@ public class Tank {
         }
     }
 
+    //根据方向布尔值确定枚举类的对象是哪一个
     private void determineDirection() {
         if (up && left && !down && !right) { // 上左
             this.direction = Direction.UPLEFT;
@@ -131,6 +138,7 @@ public class Tank {
 
     }
 
+    //松开按键，所有方向布尔值false。
     public void keyReleased(KeyEvent e) {
         switch (e.getKeyCode()) {
             case KeyEvent.VK_UP:

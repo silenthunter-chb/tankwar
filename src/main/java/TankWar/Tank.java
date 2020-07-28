@@ -7,11 +7,17 @@ import java.awt.event.KeyEvent;
 public class Tank {
       private int x, y; //坦克坐标
       private Direction direction; //枚举类对象
+      private boolean enermy; //判断坦克是否为电脑敌方
 
-      public Tank(int x, int y, Direction direction) { //实例化坦克类时，创建坦克坐标和枚举对象
+      public Tank(int x, int y, Direction direction) {
             this.x = x;
             this.y = y;
             this.direction = direction;
+      }
+
+      public Tank(int x, int y, boolean enermy, Direction direction) {
+            this(x, y, direction);
+            this.enermy = enermy;
       }
 
       void move() { //根据枚举值控制坦克坐标
@@ -67,23 +73,30 @@ public class Tank {
       }
 
       //根据枚举值，判断显示哪一个方向的坦克图片。
+      //根据构造函数enermy变量，决定是否用敌方坦克图片。
       //这个方法由显示函数调用。
       Image getImage() {
+            String prefix;
+            if (this.enermy) {
+                  prefix = "e";
+            } else {
+                  prefix = "";
+            }
             switch (direction) {
                   case UP: //上
-                        return new ImageIcon("J:\\tankwar\\assets\\images\\tankU.gif").getImage();
+                        return new ImageIcon("J:\\tankwar\\assets\\images\\" + prefix + "tankU.gif").getImage();
                   case DOWN: //下
-                        return new ImageIcon("J:\\tankwar\\assets\\images\\tankD.gif").getImage();
+                        return new ImageIcon("J:\\tankwar\\assets\\images\\" + prefix + "tankD.gif").getImage();
                   case LEFT: //左
-                        return new ImageIcon("J:\\tankwar\\assets\\images\\tankL.gif").getImage();
+                        return new ImageIcon("J:\\tankwar\\assets\\images\\" + prefix + "tankL.gif").getImage();
                   case RIGHT: //右
-                        return new ImageIcon("J:\\tankwar\\assets\\images\\tankR.gif").getImage();
+                        return new ImageIcon("J:\\tankwar\\assets\\images\\" + prefix + "tankR.gif").getImage();
                   case UPLEFT: //上左
-                        return new ImageIcon("J:\\tankwar\\assets\\images\\tankLU.gif").getImage();
+                        return new ImageIcon("J:\\tankwar\\assets\\images\\" + prefix + "tankLU.gif").getImage();
                   case UPRIGHT: //上右
-                        return new ImageIcon("J:\\tankwar\\assets\\images\\tankRU.gif").getImage();
+                        return new ImageIcon("J:\\tankwar\\assets\\images\\" + prefix + "tankRU.gif").getImage();
                   case DOWNLEFT: //下左
-                        return new ImageIcon("J:\\tankwar\\assets\\images\\tankLD.gif").getImage();
+                        return new ImageIcon("J:\\tankwar\\assets\\images\\" + prefix + "tankLD.gif").getImage();
                   case DOWNRIGHT: //下右
                         return new ImageIcon("J:\\tankwar\\assets\\images\\tankRD.gif").getImage();
             }

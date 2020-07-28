@@ -12,17 +12,26 @@ import javax.imageio.ImageIO;
 public class GameClient extends JComponent {
 
       private Tank playerTank;
-      private ArrayList<Tank> enermyTanks ;
+      private ArrayList<Tank> enermyTanks;
+      private ArrayList<Wall> walls;
 
       public GameClient() {
             this.setPreferredSize(new Dimension(800, 600));
             playerTank = new Tank(400, 100, Direction.DOWN);
             enermyTanks = new ArrayList<>(12);
+            for (int i = 0; i < 3; i++) {
+                  for (int x = 0; x < 4; x++) {
+                        enermyTanks.add(new Tank(250 + x * 100, 400 + i * 40, true, Direction.UP));
+                  }
+            }
       }
 
       @Override
       protected void paintComponent(Graphics g) {
             playerTank.draw(g);
+            for (int i = 0; i < enermyTanks.size(); i++) {
+                  enermyTanks.get(i).draw(g);
+            }
       }
 
       public static void main(String[] args) {

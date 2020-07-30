@@ -76,12 +76,7 @@ public class Tank {
       //根据构造函数enermy变量，决定是否用敌方坦克图片。
       //这个方法由显示函数调用。
       Image getImage() {
-            String prefix;
-            if (this.enermy) {
-                  prefix = "e";
-            } else {
-                  prefix = "";
-            }
+            String prefix = (this.enermy ? "e" : "");
             switch (direction) {
                   case UP: //上
                         return new ImageIcon("J:\\tankwar\\assets\\images\\" + prefix + "tankU.gif").getImage();

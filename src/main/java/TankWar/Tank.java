@@ -103,6 +103,16 @@ public class Tank {
       void draw(Graphics g) {
             this.determineDirection();
             this.move();
+            if (x < 0) {
+                  x = 0;
+            } else if (x > 800 - this.getImage().getWidth(null)) {
+                  x = 800 - this.getImage().getWidth(null);
+            }
+            if (y < 0) {
+                  y = 0;
+            } else if (y > 600 - this.getImage().getHeight(null)) {
+                  y = 600 - this.getImage().getHeight(null);
+            }
             g.drawImage(this.getImage(), this.x, this.y, null);
       }
 

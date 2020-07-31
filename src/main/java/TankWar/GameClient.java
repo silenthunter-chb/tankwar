@@ -13,11 +13,19 @@ import javax.imageio.ImageIO;
 
 public class GameClient extends JComponent {
 
+      private static final GameClient INSTANCE = new GameClient();
+      public static GameClient getInstance(){
+            return INSTANCE;
+      }
       private Tank playerTank;
       private ArrayList<Tank> enermyTanks;
       private List<Wall> walls;
 
-      public GameClient() {
+      public List<Wall> getWalls() {
+            return walls;
+      }
+
+      private GameClient() {
             setPreferredSize(new Dimension(800, 600));
             playerTank = new Tank(400, 100, Direction.DOWN);
             enermyTanks = new ArrayList<>(12);

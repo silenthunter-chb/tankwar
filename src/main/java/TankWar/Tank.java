@@ -101,6 +101,7 @@ public class Tank {
       //负责将坦克显示到窗口。
       //先调用确定方向枚举对象的方法，再调用改变坦克坐标的方法
       void draw(Graphics g) {
+            int oldX = x, oldY = y;
             this.determineDirection();
             this.move();
             if (x < 0) {
@@ -113,7 +114,19 @@ public class Tank {
             } else if (y > 600 - this.getImage().getHeight(null)) {
                   y = 600 - this.getImage().getHeight(null);
             }
+            Rectangle rec = this.getRectangle();
+            for (int i = 0; i < GameClient.getInstance().getWalls().size(); i++) {
+                  if (rec.intersects(GameClient.getInstance().getWalls().get(i).getRectangle())) {
+                        x = oldX;
+                        y = oldY;
+                        break;
+                  }
+            }
             g.drawImage(this.getImage(), this.x, this.y, null);
+      }
+
+      public Rectangle getRectangle() {
+            return new Rectangle(x, y, this.getImage().getWidth(null), this.getImage().getHeight(null));
       }
 
       private boolean up, down, left, right; //布尔值储存坦克上下左右方向

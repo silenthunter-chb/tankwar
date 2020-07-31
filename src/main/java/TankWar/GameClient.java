@@ -25,6 +25,10 @@ public class GameClient extends JComponent {
             return walls;
       }
 
+      public ArrayList<Tank> getEnermyTanks() {
+            return enermyTanks;
+      }
+
       private GameClient() {
             setPreferredSize(new Dimension(800, 600));
             playerTank = new Tank(400, 100, Direction.DOWN);

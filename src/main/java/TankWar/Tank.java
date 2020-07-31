@@ -122,6 +122,13 @@ public class Tank {
                         break;
                   }
             }
+            for (int i = 0; i < GameClient.getInstance().getEnermyTanks().size(); i++) {
+                  if(rec.intersects(GameClient.getInstance().getEnermyTanks().get(i).getRectangle())){
+                        x = oldX;
+                        y = oldY;
+                        break;
+                  }
+            }
             g.drawImage(this.getImage(), this.x, this.y, null);
       }
 

@@ -17,9 +17,11 @@ public class Wall {
       }
 
       public Rectangle getRectangle() {
-            return horizontal ?
-                    new Rectangle(x, y, bricks * brickImage.getWidth(null), brickImage.getHeight(null)) :
-                    new Rectangle(x, y, brickImage.getWidth(null), brickImage.getHeight(null) * bricks);
+            if (horizontal) {
+                  return new Rectangle(x, y, bricks * brickImage.getWidth(null), brickImage.getHeight(null));
+            } else {
+                  return new Rectangle(x, y, brickImage.getWidth(null), brickImage.getHeight(null) * bricks);
+            }
       }
 
       public void draw(Graphics g) {

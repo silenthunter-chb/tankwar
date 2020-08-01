@@ -123,7 +123,7 @@ public class Tank {
                   }
             }
             for (int i = 0; i < GameClient.getInstance().getEnermyTanks().size(); i++) {
-                  if(rec.intersects(GameClient.getInstance().getEnermyTanks().get(i).getRectangle())){
+                  if (rec.intersects(GameClient.getInstance().getEnermyTanks().get(i).getRectangle())) {
                         x = oldX;
                         y = oldY;
                         break;
@@ -154,7 +154,16 @@ public class Tank {
                   case KeyEvent.VK_RIGHT:
                         right = true;
                         break;
+                  case KeyEvent.VK_CONTROL:
+                        fire();
+                        break;
             }
+      }
+
+      private void fire() {
+            Missile missile = new Missile
+                    (x + this.getImage().getWidth(null) / 2-6, y + this.getImage().getHeight(null) / 2 - 6, enermy, direction);
+            GameClient.getInstance().getMissiles().add(missile);
       }
 
       private boolean stopped;

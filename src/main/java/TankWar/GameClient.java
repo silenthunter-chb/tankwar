@@ -19,20 +19,23 @@ public class GameClient extends JComponent {
       }
       private Tank playerTank;
       private ArrayList<Tank> enermyTanks;
+      public ArrayList<Tank> getEnermyTanks() {
+            return enermyTanks;
+      }
       private List<Wall> walls;
-
       public List<Wall> getWalls() {
             return walls;
       }
-
-      public ArrayList<Tank> getEnermyTanks() {
-            return enermyTanks;
+      private List<Missile> missiles;
+      public List<Missile> getMissiles() {
+            return missiles;
       }
 
       private GameClient() {
             setPreferredSize(new Dimension(800, 600));
             playerTank = new Tank(400, 100, Direction.DOWN);
             enermyTanks = new ArrayList<>(12);
+            missiles = new ArrayList<>();
             for (int i = 0; i < 3; i++) {//加入电脑敌人坦克，3行4列
                   for (int x = 0; x < 4; x++) {
                         enermyTanks.add(new Tank(250 + x * 100, 400 + i * 40, true, Direction.UP));
@@ -58,6 +61,9 @@ public class GameClient extends JComponent {
             for (int i = 0; i < walls.size(); i++) {
                   walls.get(i).draw(g);
             }
+            for (int i = 0; i < missiles.size(); i++) {
+                  missiles.get(i).draw(g);
+            }
       }
 
       public static void main(String[] args) {
@@ -65,7 +71,7 @@ public class GameClient extends JComponent {
             frame.setTitle("Udemy的坦克大战");
             frame.setIconImage(new ImageIcon("assets/images/icon.png").getImage());
             frame.setLocation(300, 40);
-            final GameClient client = new GameClient();
+            final GameClient client = GameClient.getInstance();
             frame.add(client);
             frame.pack();
             frame.setDefaultCloseOperation(3);

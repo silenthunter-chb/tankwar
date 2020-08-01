@@ -14,19 +14,26 @@ import javax.imageio.ImageIO;
 public class GameClient extends JComponent {
 
       private static final GameClient INSTANCE = new GameClient();
-      public static GameClient getInstance(){
+
+      public static GameClient getInstance() {
             return INSTANCE;
       }
+
       private Tank playerTank;
       private ArrayList<Tank> enermyTanks;
+
       public ArrayList<Tank> getEnermyTanks() {
             return enermyTanks;
       }
+
       private List<Wall> walls;
+
       public List<Wall> getWalls() {
             return walls;
       }
+
       private List<Missile> missiles;
+
       public List<Missile> getMissiles() {
             return missiles;
       }
@@ -67,6 +74,8 @@ public class GameClient extends JComponent {
       }
 
       public static void main(String[] args) {
+            com.sun.javafx.application.PlatformImpl.startup(() -> {
+            });
             JFrame frame = new JFrame();
             frame.setTitle("Udemy的坦克大战");
             frame.setIconImage(new ImageIcon("assets/images/icon.png").getImage());

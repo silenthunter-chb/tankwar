@@ -1,8 +1,12 @@
 package TankWar;
 
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.io.File;
 
 public class Tank {
       private int x, y; //坦克坐标
@@ -164,6 +168,9 @@ public class Tank {
             Missile missile = new Missile
                     (x + this.getImage().getWidth(null) / 2-6, y + this.getImage().getHeight(null) / 2 - 6, enermy, direction);
             GameClient.getInstance().getMissiles().add(missile);
+            Media sound = new Media(new File("J:\\tankwar\\assets\\audios\\shoot.wav").toURI().toString());
+            MediaPlayer mediaPlayer = new MediaPlayer(sound);
+            mediaPlayer.play();
       }
 
       private boolean stopped;

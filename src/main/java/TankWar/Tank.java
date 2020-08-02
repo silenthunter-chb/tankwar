@@ -7,6 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.io.File;
+import java.util.Random;
 
 public class Tank {
       private int x, y; //坦克坐标
@@ -58,22 +59,6 @@ public class Tank {
                         y += 5;
                         break;
             }
-      }
-
-      public void setX(int x) {
-            this.x = x;
-      }
-
-      public void setY(int y) {
-            this.y = y;
-      }
-
-      public int getX() {
-            return x;
-      }
-
-      public int getY() {
-            return y;
       }
 
       //根据枚举值，判断显示哪一个方向的坦克图片。
@@ -161,12 +146,27 @@ public class Tank {
                   case KeyEvent.VK_CONTROL:
                         fire();
                         break;
+                  case KeyEvent.VK_A:
+                        superFire();
+                        break;
             }
+      }
+
+      private void superFire() {
+           for (Direction direction : Direction.values()) {
+                  Missile missile = new Missile
+                          (x + this.getImage().getWidth(null) / 2 - 6, y + this.getImage().getHeight(null) / 2 - 6, enermy, direction);
+                  GameClient.getInstance().getMissiles().add(missile);
+            }
+            String audioFile = new Random().nextBoolean() ? "supershoot.aiff" : "supershoot.wav";
+            Media sound = new Media(new File("J:\\tankwar\\assets\\audios\\" + audioFile).toURI().toString());
+            MediaPlayer mediaPlayer = new MediaPlayer(sound);
+            mediaPlayer.play();
       }
 
       private void fire() {
             Missile missile = new Missile
-                    (x + this.getImage().getWidth(null) / 2-6, y + this.getImage().getHeight(null) / 2 - 6, enermy, direction);
+                    (x + this.getImage().getWidth(null) / 2 - 6, y + this.getImage().getHeight(null) / 2 - 6, enermy, direction);
             GameClient.getInstance().getMissiles().add(missile);
             Media sound = new Media(new File("J:\\tankwar\\assets\\audios\\shoot.wav").toURI().toString());
             MediaPlayer mediaPlayer = new MediaPlayer(sound);

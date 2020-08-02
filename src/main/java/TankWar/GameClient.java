@@ -80,10 +80,11 @@ public class GameClient extends JComponent {
             frame.setTitle("Udemy的坦克大战");
             frame.setIconImage(new ImageIcon("assets/images/icon.png").getImage());
             frame.setLocation(300, 40);
-            final GameClient client = GameClient.getInstance();
+            final GameClient client = INSTANCE;
             frame.add(client);
             frame.pack();
             frame.setDefaultCloseOperation(3);
+            //frame.setResizable(false);
             frame.setVisible(true);
             //在窗口增加键盘监听，用KeyAdapter匿名内部类
             frame.addKeyListener(new KeyAdapter() {

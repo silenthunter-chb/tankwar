@@ -152,14 +152,18 @@ public class Tank {
             }
       }
 
-      private void superFire() {
+      void superFire() {
            for (Direction direction : Direction.values()) {
                   Missile missile = new Missile
                           (x + this.getImage().getWidth(null) / 2 - 6, y + this.getImage().getHeight(null) / 2 - 6, enermy, direction);
                   GameClient.getInstance().getMissiles().add(missile);
             }
             String audioFile = new Random().nextBoolean() ? "supershoot.aiff" : "supershoot.wav";
-            Media sound = new Media(new File("J:\\tankwar\\assets\\audios\\" + audioFile).toURI().toString());
+            playAudio(audioFile);
+      }
+
+      private void playAudio(String fileName) {
+            Media sound = new Media(new File("J:\\tankwar\\assets\\audios\\" + fileName).toURI().toString());
             MediaPlayer mediaPlayer = new MediaPlayer(sound);
             mediaPlayer.play();
       }
@@ -168,9 +172,7 @@ public class Tank {
             Missile missile = new Missile
                     (x + this.getImage().getWidth(null) / 2 - 6, y + this.getImage().getHeight(null) / 2 - 6, enermy, direction);
             GameClient.getInstance().getMissiles().add(missile);
-            Media sound = new Media(new File("J:\\tankwar\\assets\\audios\\shoot.wav").toURI().toString());
-            MediaPlayer mediaPlayer = new MediaPlayer(sound);
-            mediaPlayer.play();
+            playAudio("shoot.wav");
       }
 
       private boolean stopped;

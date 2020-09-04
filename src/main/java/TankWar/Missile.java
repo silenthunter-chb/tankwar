@@ -16,26 +16,8 @@ class Missile {
             this.direction = direction;
       }
 
-      Image getImage() {
-            switch (direction) {
-                  case UP: //上
-                        return new ImageIcon("J:\\tankwar\\assets\\images\\missileU.gif").getImage();
-                  case DOWN: //下
-                        return new ImageIcon("J:\\tankwar\\assets\\images\\missileD.gif").getImage();
-                  case LEFT: //左
-                        return new ImageIcon("J:\\tankwar\\assets\\images\\missileL.gif").getImage();
-                  case RIGHT: //右
-                        return new ImageIcon("J:\\tankwar\\assets\\images\\missileR.gif").getImage();
-                  case UPLEFT: //上左
-                        return new ImageIcon("J:\\tankwar\\assets\\images\\missileLU.gif").getImage();
-                  case UPRIGHT: //上右
-                        return new ImageIcon("J:\\tankwar\\assets\\images\\missileRU.gif").getImage();
-                  case DOWNLEFT: //下左
-                        return new ImageIcon("J:\\tankwar\\assets\\images\\missileLD.gif").getImage();
-                  case DOWNRIGHT: //下右
-                        return new ImageIcon("J:\\tankwar\\assets\\images\\missileRD.gif").getImage();
-            }
-            return null;
+      private Image getImage() {
+            return direction.getImage("missile");
       }
 
       void move() {
@@ -52,19 +34,19 @@ class Missile {
                   case RIGHT: //右
                         x += SPEED;
                         break;
-                  case UPLEFT: //上左
+                  case LEFT_UP: //上左
                         x -= SPEED;
                         y -= SPEED;
                         break;
-                  case UPRIGHT://上右
+                  case RIGHT_UP://上右
                         x += SPEED;
                         y -= SPEED;
                         break;
-                  case DOWNLEFT://下左
+                  case LEFT_DOWN://下左
                         x -= SPEED;
                         y += SPEED;
                         break;
-                  case DOWNRIGHT://下右
+                  case RIGHT_DOWN://下右
                         x += SPEED;
                         y += SPEED;
                         break;

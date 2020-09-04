@@ -1,12 +1,24 @@
 package TankWar;
 
+import java.awt.*;
+
 public enum Direction {
-      UP, //上
-      DOWN, //下
-      LEFT, //左
-      RIGHT, //右
-      UPLEFT, //上左
-      UPRIGHT, //上右
-      DOWNLEFT, //下左
-      DOWNRIGHT; //下右
+      UP("U"), //上
+      DOWN("D"), //下
+      LEFT("L"), //左
+      RIGHT("R"), //右
+      LEFT_UP("LU"), //上左
+      RIGHT_UP("RU"), //上右
+      LEFT_DOWN("LD"), //下左
+      RIGHT_DOWN("RD"); //下右
+
+      private final String abbrev;
+
+      Direction(String abbrev) {
+            this.abbrev = abbrev;
+      }
+
+      Image getImage(String prefix){
+            return Tools.getImage(prefix + abbrev + ".gif");
+      }
 }

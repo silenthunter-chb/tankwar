@@ -42,49 +42,28 @@ public class Tank {
                   case RIGHT: //右
                         x += 5;
                         break;
-                  case UPLEFT: //上左
+                  case LEFT_UP: //上左
                         x -= 5;
                         y -= 5;
                         break;
-                  case UPRIGHT://上右
+                  case RIGHT_UP://上右
                         x += 5;
                         y -= 5;
                         break;
-                  case DOWNLEFT://下左
+                  case LEFT_DOWN://下左
                         x -= 5;
                         y += 5;
                         break;
-                  case DOWNRIGHT://下右
+                  case RIGHT_DOWN://下右
                         x += 5;
                         y += 5;
                         break;
             }
       }
 
-      //根据枚举值，判断显示哪一个方向的坦克图片。
-      //根据构造函数enermy变量，决定是否用敌方坦克图片。
-      //这个方法由显示函数调用。
       Image getImage() {
             String prefix = (this.enermy ? "e" : "");
-            switch (direction) {
-                  case UP: //上
-                        return new ImageIcon("J:\\tankwar\\assets\\images\\" + prefix + "tankU.gif").getImage();
-                  case DOWN: //下
-                        return new ImageIcon("J:\\tankwar\\assets\\images\\" + prefix + "tankD.gif").getImage();
-                  case LEFT: //左
-                        return new ImageIcon("J:\\tankwar\\assets\\images\\" + prefix + "tankL.gif").getImage();
-                  case RIGHT: //右
-                        return new ImageIcon("J:\\tankwar\\assets\\images\\" + prefix + "tankR.gif").getImage();
-                  case UPLEFT: //上左
-                        return new ImageIcon("J:\\tankwar\\assets\\images\\" + prefix + "tankLU.gif").getImage();
-                  case UPRIGHT: //上右
-                        return new ImageIcon("J:\\tankwar\\assets\\images\\" + prefix + "tankRU.gif").getImage();
-                  case DOWNLEFT: //下左
-                        return new ImageIcon("J:\\tankwar\\assets\\images\\" + prefix + "tankLD.gif").getImage();
-                  case DOWNRIGHT: //下右
-                        return new ImageIcon("J:\\tankwar\\assets\\images\\tankRD.gif").getImage();
-            }
-            return null;
+            return direction.getImage(prefix + "tank");
       }
 
       //负责将坦克显示到窗口。
@@ -183,17 +162,17 @@ public class Tank {
                   this.stopped = true;
             } else {
                   if (up && left && !down && !right) { // 上左
-                        this.direction = Direction.UPLEFT;
+                        this.direction = Direction.LEFT_UP;
                   } else if (up && !left && !down && right) { // 上右
-                        this.direction = Direction.UPRIGHT;
+                        this.direction = Direction.RIGHT_UP;
                   } else if (up && !left && !down && !right) { // 上
                         this.direction = Direction.UP;
                   } else if (!up && !left && down && !right) {//下
                         this.direction = Direction.DOWN;
                   } else if (!up && left && down && !right) {//下左
-                        this.direction = Direction.DOWNLEFT;
+                        this.direction = Direction.LEFT_DOWN;
                   } else if (!up && !left && down && right) {//下右
-                        this.direction = Direction.DOWNRIGHT;
+                        this.direction = Direction.RIGHT_DOWN ;
                   } else if (!up && left && !down && !right) { //左
                         this.direction = Direction.LEFT;
                   } else if (!up && !left && !down && right) {//右

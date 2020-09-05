@@ -10,6 +10,7 @@ import java.io.File;
 import java.util.Random;
 
 public class Tank {
+      public static final int MOVE_SPEED = 5;
       private int x, y; //坦克坐标
       private Direction direction; //枚举类对象
       private boolean enermy; //判断坦克是否为电脑敌方
@@ -29,36 +30,8 @@ public class Tank {
             if (this.stopped) {
                   return;
             }
-            switch (direction) {
-                  case UP: //上
-                        y -= 5;
-                        break;
-                  case DOWN: //下
-                        y += 5;
-                        break;
-                  case LEFT: //左
-                        x -= 5;
-                        break;
-                  case RIGHT: //右
-                        x += 5;
-                        break;
-                  case LEFT_UP: //上左
-                        x -= 5;
-                        y -= 5;
-                        break;
-                  case RIGHT_UP://上右
-                        x += 5;
-                        y -= 5;
-                        break;
-                  case LEFT_DOWN://下左
-                        x -= 5;
-                        y += 5;
-                        break;
-                  case RIGHT_DOWN://下右
-                        x += 5;
-                        y += 5;
-                        break;
-            }
+            x+=direction.xFactor * MOVE_SPEED;
+            y+=direction.yFactor * MOVE_SPEED;
       }
 
       Image getImage() {
